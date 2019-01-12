@@ -18,7 +18,7 @@ public class App {
 
   public static void main(String[] args) throws InterruptedException, FileNotFoundException {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-    hds = new HappyDataStore("/");
+    hds = new HappyDataStore("/Users/Matt");
     Set<String> notHappy = new HashSet<String>(hds.getNumbers());
     while(true) {
     		ResourceSet<Message> messages = getMessages();
@@ -41,7 +41,7 @@ public class App {
     			
     		}
     		for (String num : notHappy) {
-    			int randomNum = (int) Math.random() * 100;
+    			int randomNum = (int) (Math.random() * 100);
     			System.out.println(randomNum);
     			System.out.println(hds.getNews()[randomNum]);
     			Message message = Message.creator(new PhoneNumber(num), new PhoneNumber("+12532631761"), hds.getNews()[randomNum]).create();

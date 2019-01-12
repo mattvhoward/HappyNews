@@ -14,14 +14,14 @@ public class HappyDataStore {
 
 
 	public HappyDataStore(String dbLoc) throws FileNotFoundException {
-		Scanner sc = new Scanner(new File(dbLoc + "/Users/Matt/numbers"));
+		Scanner sc = new Scanner(new File(dbLoc + "/numbers"));
 		this.numbers = new HashMap<String, String[]>();
 		for (int i = 0; sc.hasNextLine(); i++) {
 			String[] line = sc.nextLine().split(", ");
 			this.numbers.put(line[0], line);
 		}
 
-		sc = new Scanner(new File(dbLoc + "/Users/Matt/news"));
+		sc = new Scanner(new File(dbLoc + "/news"));
 		this.news = new String[100];
 		for (int i = 0; sc.hasNextLine() && i < 100; i++) {
 			news[i] = sc.nextLine();
