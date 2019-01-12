@@ -27,6 +27,10 @@ public class App {
     			if (msg.getTo().toString().equals("+12532631761")) {
 	    			PhoneNumber pn = msg.getFrom();
 	    			String phoneNumber = pn.toString();
+	    			if (!hds.getNumbers().contains(phoneNumber)) {
+	    				Message message = Message.creator(new PhoneNumber(phoneNumber), new PhoneNumber("+12532631761"),
+	    						"Welcome to Happy News! Curated happy news delivered to you daily.").create();
+	    			}
 	    			hds.addNumber(phoneNumber);
 	    			notHappy.add(phoneNumber);
     			}
@@ -37,7 +41,7 @@ public class App {
     			
     		}
     		for (String num : notHappy) {
-    			int randomNum = ThreadLocalRandom.current().nextInt(0, 9);
+    			int randomNum = (int) Math.random() * 100;
     			System.out.println(randomNum);
     			System.out.println(hds.getNews()[randomNum]);
     			Message message = Message.creator(new PhoneNumber(num), new PhoneNumber("+12532631761"), hds.getNews()[randomNum]).create();
