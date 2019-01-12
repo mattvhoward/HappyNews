@@ -41,6 +41,6 @@ public class HappyDataStore {
 	}
 
 	public void close() {
-
+		
 	}
 }
