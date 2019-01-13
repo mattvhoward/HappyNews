@@ -2,6 +2,8 @@ package hackathon.winfo.HappyNews;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,10 +13,12 @@ public class HappyDataStore {
 
 	private Map<String, String[]> numbers;
 	private String[] news;
+	private String dbLoc;
 
 
 	public HappyDataStore(String dbLoc) throws FileNotFoundException {
 		Scanner sc = new Scanner(new File(dbLoc + "/numbers"));
+		this.dbLoc = dbLoc;
 		this.numbers = new HashMap<String, String[]>();
 		for (int i = 0; sc.hasNextLine(); i++) {
 			String[] line = sc.nextLine().split(", ");
@@ -40,7 +44,12 @@ public class HappyDataStore {
 		numbers.put(num, null);
 	}
 
-	public void close() {
-		
+	public void save() throws IOException {
+		FileWriter fw = new FileWriter(dbLoc + "/numbers");
+		for (String num : numbers.keySet()) {
+			fw.write(num);
+			fw.write("\n");
+		}
+		fw.close();
 	}
 }

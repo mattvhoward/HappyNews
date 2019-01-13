@@ -1,6 +1,7 @@
 package hackathon.winfo.HappyNews;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +17,7 @@ public class App {
   public static final String AUTH_TOKEN = "b35a84f350cf00da601fa6c92a148ff8";
   public static HappyDataStore hds;
 
-  public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+  public static void main(String[] args) throws InterruptedException, IOException {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     hds = new HappyDataStore("poop");
     Set<String> notHappy = new HashSet<String>(hds.getNumbers());
@@ -57,7 +58,7 @@ public class App {
     			System.out.println("Message sent to unhappy user: " + num);
     		}
     		notHappy.clear();
-    		
+    		hds.save();
     		/*try {
     			//deleteMessages(messages);
     		} catch(Exception e) {
