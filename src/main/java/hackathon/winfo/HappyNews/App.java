@@ -18,7 +18,7 @@ public class App {
 
   public static void main(String[] args) throws InterruptedException, FileNotFoundException {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-    hds = new HappyDataStore("/Users/Matt");
+    hds = new HappyDataStore("poop");
     Set<String> notHappy = new HashSet<String>(hds.getNumbers());
     System.out.println("Getting old messages...");
     ResourceSet<Message> messages = getMessages();
